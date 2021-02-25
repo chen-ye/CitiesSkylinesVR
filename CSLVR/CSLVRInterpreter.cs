@@ -31,18 +31,40 @@ namespace CSLVR
         {
             if (camera.name == "UIView" || camera.name == "LoadingManager")
             {
-                VRLog.Info("ui camera {0}", camera.name);
                 return true;
             }
             return base.IsUICamera(camera);
         }
 
-        public override int DefaultCullingMask
-        {
-            get
-            {
-                return ~0;
-            }
-        }
+        //protected override CameraJudgement JudgeCameraInternal(Camera camera)
+        //{
+        //    bool guiInterested = VR.GUI.IsInterested(camera);
+        //    // bool renderToTexture = camera.targetTexture == null;
+        //    bool isMain = camera.CompareTag("MainCamera");
+        //    if (isMain)
+        //    {
+        //        if (guiInterested)
+        //        {
+        //            return CameraJudgement.GUIAndCamera;
+        //        }
+        //        else if (camera.CompareTag("MainCamera"))
+        //        {
+        //            return CameraJudgement.MainCamera;
+        //        }
+        //        else
+        //        {
+        //            return CameraJudgement.SubCamera;
+        //        }
+        //    }
+        //    return guiInterested ? CameraJudgement.GUI : CameraJudgement.Ignore;
+        //}
+
+        //public override int DefaultCullingMask
+        //{
+        //    get
+        //    {
+        //        return ~0;
+        //    }
+        //}
     }
 }

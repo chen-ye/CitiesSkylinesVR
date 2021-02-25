@@ -1,6 +1,7 @@
 ﻿using ICities;
 using System;
 using System.Reflection;
+using CitiesHarmony.API;
 using VRGIN.Core;
 using VRGIN.Helpers;
 using VRGIN.Modes;
@@ -14,6 +15,7 @@ namespace CSLVR
     
         public void OnEnabled()     
         {
+            HarmonyHelper.DoOnHarmonyReady(Patcher.PatchAll);
             if (SteamVRDetector.IsRunning)
             {
                 var context = new CSLVRContext();
@@ -21,5 +23,10 @@ namespace CSLVR
                 VR.Manager.SetMode<CSLMode>();
             }
         }
+
+        public void OnDisabled()
+        {
+            if (HarmonyHelper.IsHarmonyInstalled) Patcher.UnpatchAll();
+        } 
     }
 }
